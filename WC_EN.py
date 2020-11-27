@@ -1,11 +1,12 @@
 from bs4 import BeautifulSoup
 import requests
-from konlpy.tag import Twitter
+import nltk
+from nltk.tokenize import sent_tokenize
 from collections import Counter
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 
-search_word = "보안"  # 검색어 지정
+search_word = "samsung"  # 검색어 지정
 title_list = []
 
 
@@ -15,7 +16,7 @@ def get_titles(start_num, end_num):
         if start_num > end_num:
             break
         print(start_num)
-        url = 'https://search.naver.com/search.naver?where=news&sm=tab_jum&query={}&start={}'.format(
+        url = 'https://search.naver.com/search.naver?where=news&sm=tab_jum&query={}start={}'.format(
             search_word, start_num)
         req = requests.get(url)
 
@@ -38,7 +39,7 @@ def get_titles(start_num, end_num):
 
 
 def make_wordcloud(word_count):
-    twitter = Twitter()
+    twitter = word_tokenize()
 
     sentences_tag = []
     # 형태소 분석하여 리스트에 넣기
