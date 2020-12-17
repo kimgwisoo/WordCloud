@@ -1,12 +1,11 @@
 from bs4 import BeautifulSoup
 import requests
 import nltk
-from nltk.tokenize import sent_tokenize
 from collections import Counter
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 
-search_word = "samsung"  # 검색어 지정
+search_word = "Samsung"  # 검색어 지정
 title_list = []
 
 
@@ -39,12 +38,12 @@ def get_titles(start_num, end_num):
 
 
 def make_wordcloud(word_count):
-    twitter = word_tokenize()
+    nl = nltk.word_tokenize()
 
     sentences_tag = []
     # 형태소 분석하여 리스트에 넣기
     for sentence in title_list:
-        morph = twitter.pos(sentence)
+        morph = nl.pos_tag(sentence)
         sentences_tag.append(morph)
         print(morph)
         print('-' * 30)
@@ -53,7 +52,7 @@ def make_wordcloud(word_count):
     print('\n' * 3)
 
     noun_adj_list = []
-    # 명사와 형용사만 구분하여 이스트에 넣기
+    # 명사와 형용사만 구분하여 리스트에 넣기
     for sentence1 in sentences_tag:
         for word, tag in sentence1:
             if tag in ['Noun', 'Adjective']:
@@ -65,14 +64,12 @@ def make_wordcloud(word_count):
     print(tags)
 
     # wordCloud생성
-    # 한글꺠지는 문제 해결하기위해 font_path 지정
-    wc = WordCloud(font_path='/Library/Fonts/NanumGothic.ttf',
-                   background_color='white', width=800, height=600)
+    wc = WordCloud(width=1000, height=600,
+                   background_color="white", random_state=0)
     print(dict(tags))
-    cloud = wc.generate_from_frequencies(dict(tags))
     plt.figure(figsize=(10, 8))
     plt.axis('off')
-    plt.imshow(cloud)
+    plt.imshow(wc.generate_from_frequencies(tags))
     plt.show()
 
 
