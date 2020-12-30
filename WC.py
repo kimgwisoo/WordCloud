@@ -46,7 +46,7 @@ def make_wordcloud(word_count):
         morph = twitter.pos(sentence)
         sentences_tag.append(morph)
         print(morph)
-        print('-' * 30)
+        print('-' * 100)
 
     print(sentences_tag)
     print('\n' * 3)
@@ -77,7 +77,7 @@ def make_wordcloud(word_count):
 
 if __name__ == '__main__':
     # 1~200번게시글 까지 크롤링
-    get_titles(1, 200)
+    get_titles(1, 10)
 
     # 단어 30개까지 wordcloud로 출력
     make_wordcloud(10)
