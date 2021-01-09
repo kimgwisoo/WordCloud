@@ -5,7 +5,7 @@ from collections import Counter
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 
-search_word = "보안"  # 검색어 지정
+search_word = "Samsung"  # 검색어 지정
 title_list = []
 
 

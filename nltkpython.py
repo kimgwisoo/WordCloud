@@ -48,7 +48,6 @@ def make_wordcloud(word_count):
         wd = re.sub(
             "[-=+,·#/\?:^$.@*\"※~&%ㆍ!’』\\‘|\(\)\[\]\<\>`\'…》]", '', sentence)
         morph = twitter.tokenize(wd)
-        # morph = wn(sentence)
         sentences_tag.append(morph)
         print(morph)
         print('-' * 30)
@@ -75,7 +74,7 @@ def make_wordcloud(word_count):
     # 한글꺠지는 문제 해결하기위해 font_path 지정
     wc = WordCloud(font_path='/Library/Fonts/NanumGothic.ttf',
                    background_color='white', width=800, height=600)
-    # print(dict(tags))
+    print(dict(tags))
     cloud = wc.generate_from_frequencies(dict(tags))
     plt.figure(figsize=(10, 8))
     plt.axis('off')
